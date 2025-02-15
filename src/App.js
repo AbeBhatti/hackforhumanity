@@ -1,14 +1,12 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Map from "./Map";  
-import CountryPage from "./CountryPage";  // Country detail page
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Map from "./Map"; 
 
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Map />} />
-        <Route path="/country/:countryName" element={<CountryPage />} />
+        <Route path="/" element={<Map />} />  
       </Routes>
     </Router>
   );
