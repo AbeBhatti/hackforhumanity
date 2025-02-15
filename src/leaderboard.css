@@ -1,81 +1,64 @@
-/* Leaderboard.css */
-
 /* Leaderboard Container */
 .leaderboard {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #f3f4f6;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
   }
   
-  /* Title */
   .leaderboard-title {
     font-size: 28px;
     font-weight: bold;
-    color: #d9534f; /* Red to indicate fire danger */
-    margin-bottom: 16px;
+    color: #d9534f;
+    margin-bottom: 20px;
   }
   
-  /* Place Box */
-  .place-box {
+  .leaderboard-list {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* Place Card Styles */
+  .place-card {
     position: relative;
-    width: 260px;
+    width: 200px;
     padding: 16px;
-    background-color: white;
-    border: 2px solid #ccc;
     border-radius: 8px;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
+    background-color: #ffffff;
+    border: 2px solid #ccc;
     transition: transform 0.3s ease-in-out;
     cursor: pointer;
+    overflow: hidden;
   }
   
-  /* Hover Effect: Show Details */
-  .place-box:hover {
-    transform: scale(1.05);
+  .place-card:hover {
+    transform: translateY(-5px);
     border-color: #d9534f;
   }
   
-  /* Hidden Details */
+  /* Hover Overlay */
   .place-details {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.8);
     color: white;
+    opacity: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 8px;
-    opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
   
-  /* Show Details on Hover */
-  .place-box:hover .place-details {
+  .place-card:hover .place-details {
     opacity: 1;
   }
   
-  /* Place Name */
-  .place-details h3 {
-    font-size: 20px;
+  .place-name {
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 8px;
-  }
-  
-  /* Place Description */
-  .place-details p {
-    font-size: 14px;
-    padding: 0 10px;
-    text-align: center;
-    line-height: 1.4;
+    color: #333;
   }
   

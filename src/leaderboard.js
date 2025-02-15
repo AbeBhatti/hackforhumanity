@@ -1,4 +1,6 @@
+// Leaderboard.js
 import React from "react";
+import "./Leaderboard.css";
 
 const topPlaces = [
   { 
@@ -15,11 +17,11 @@ const topPlaces = [
   },
 ];
 
-function Index() {
+function Leaderboard() {
   return (
-    <div className="min-h-screen p-8 bg-gray-100">
-      <h1 className="text-3xl font-bold text-center mb-6">🔥 Top 3 Places in Danger of Fire</h1>
-      <div className="flex flex-col md:flex-row justify-center gap-6">
+    <div className="leaderboard">
+      <h1 className="leaderboard-title">🔥 Top 3 Places in Danger of Fire</h1>
+      <div className="leaderboard-list">
         {topPlaces.map((place, index) => (
           <PlaceCard key={index} place={place} />
         ))}
@@ -30,17 +32,14 @@ function Index() {
 
 function PlaceCard({ place }) {
   return (
-    <div className="relative group cursor-pointer border border-gray-300 rounded-lg p-4 bg-white shadow-lg transition-transform transform hover:scale-105">
-      {/* Place Name (Visible) */}
-      <h2 className="text-xl font-bold text-gray-800">{place.name}</h2>
-
-      {/* Hover Info (Hidden until hover) */}
-      <div className="absolute inset-0 bg-black bg-opacity-80 text-white flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        <h3 className="text-lg font-bold">{place.name}</h3>
-        <p className="text-sm px-2 text-center">{place.description}</p>
+    <div className="place-card">
+      <h2 className="place-name">{place.name}</h2>
+      <div className="place-details">
+        <h3>{place.name}</h3>
+        <p>{place.description}</p>
       </div>
     </div>
   );
 }
 
-export default Index;
+export default Leaderboard;
