@@ -1,11 +1,16 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Map from "./Map";  
+import CountryPage from "./CountryPage";  // Country detail page
 
 function App() {
   return (
-    <div>
-      <h1>Welcome to My Website</h1>
-      <p>This is my first React website. Stay tuned for more updates!</p>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Map />} />
+        <Route path="/country/:countryName" element={<CountryPage />} />
+      </Routes>
+    </Router>
   );
 }
 
