@@ -121,7 +121,7 @@ function Map() {
   return (
     <div className="map-leaderboard-split">
       <header className="main-title">
-        <h1>Ember Explorer</h1>
+        <h1>Ember Alert</h1>
       </header>
 
       <div className="split-container">
