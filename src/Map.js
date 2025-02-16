@@ -1,11 +1,10 @@
-// src/pages/Map.js
 import React, { useState, useEffect, useRef } from "react";
 import { ComposableMap, Geographies, Geography, Marker, ZoomableGroup } from "react-simple-maps";
 import './Map.css';
 
 const usGeoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
-// Sample data for coordinates and radius (10 samples)
+// Sample data for coordinates and radius (10 counties)
 const coordinatesData = [
   { name: "Butte County, CA", coordinates: [-121.635, 39.557], radius: 50 },
   { name: "Lake County, CA", coordinates: [-122.650, 39.000], radius: 30 },
@@ -35,9 +34,9 @@ function Map() {
       .catch((error) => console.error("Error loading map data:", error));
   }, []);
 
-  // Adjust radius based on zoom level
+  // Adjust radius based on zoom level and actual radius value in miles
   const scaleRadius = (radius) => {
-    const scaleFactor = 0.028; // Adjust this value for desired scale
+    const scaleFactor = 0.1; // Adjust this scale factor to control size
     return radius * scaleFactor * zoom;
   };
 
@@ -53,6 +52,15 @@ function Map() {
     setZoom(1); // Reset zoom to default
     setCenter([-98.5795, 39.8283]); // Reset center to default (US)
     setClickedCoordinate(null); // Reset clicked coordinate
+  };
+
+  // Handle zoom in and zoom out buttons
+  const zoomIn = () => {
+    setZoom((prevZoom) => Math.min(prevZoom + 1, 10)); // Zoom in (limit to zoom level of 10)
+  };
+
+  const zoomOut = () => {
+    setZoom((prevZoom) => Math.max(prevZoom - 1, 1)); // Zoom out (limit to zoom level of 1)
   };
 
   return (
@@ -74,14 +82,28 @@ function Map() {
                 <Geographies geography={geoData}>
                   {({ geographies }) =>
                     geographies.map((geo) => {
+                      const stateName = geo.properties?.name || "Unknown State";
                       return (
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
+                          // Outline the state without making it hoverable or clickable
                           style={{
-                            default: { fill: "#D6D6DA", outline: "none" }, // Default color for states
-                            hover: { fill: "#D6D6DA", outline: "none" }, // Remove hover effect
-                            pressed: { fill: "#D6D6DA", outline: "none" } // Remove pressed effect
+                            default: { 
+                              fill: "#D6D6DA", 
+                              outline: "none", 
+                              stroke: "#2c3e50", // Outline color
+                              strokeWidth: 0.5 // Thickness of state borders
+                            },
+                            hover: { 
+                              fill: "#D6D6DA", 
+                              outline: "none",
+                              cursor: "default" // No cursor change on hover
+                            },
+                            pressed: { 
+                              fill: "#D6D6DA", 
+                              outline: "none"
+                            }
                           }}
                         />
                       );
@@ -120,13 +142,13 @@ function Map() {
           )}
           <div className="info-text">
             <h2>U.S. Map</h2>
-            <p>Click on a coordinate to zoom in and view the area.</p>
+            <p>Click on a coordinate to view details.</p>
           </div>
         </div>
 
         {/* Right: Leaderboard Section */}
         <div className="leaderboard-section">
-          <h1>🔥 Top 10 Places in Danger of Fire</h1>
+          <h1 className="leaderboard-header">🔥 Top 10 Places in Danger of Fire</h1>
           <ul>
             {coordinatesData.map((place, index) => (
               <li key={index} className="place-card" onClick={() => handleCoordinateClick(place.coordinates, place.radius)}>
@@ -147,6 +169,12 @@ function Map() {
           </button>
         </div>
       )}
+
+      {/* Zoom In and Zoom Out Buttons */}
+      <div className="zoom-buttons">
+        <button onClick={zoomIn} className="btn-zoom">+</button>
+        <button onClick={zoomOut} className="btn-zoom">-</button>
+      </div>
     </div>
   );
 }
