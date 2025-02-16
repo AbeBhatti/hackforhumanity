@@ -6,7 +6,7 @@ const usGeoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
 // Sample data for coordinates and radius (10 counties)
 const coordinatesData = [
-  { name: "Butte County, CA", coordinates: [-121.635, 39.557], radius: 50 },
+  { name: "Butte County, CA", coordinates: [-121.9368, 37.3489], radius: 20 },
   { name: "Lake County, CA", coordinates: [-122.650, 39.000], radius: 30 },
   { name: "Shasta County, CA", coordinates: [-122.431, 40.589], radius: 40 },
   { name: "Miami-Dade County, FL", coordinates: [-80.1918, 25.7617], radius: 60 },
@@ -37,7 +37,7 @@ function Map() {
   // Adjust radius based on zoom level and actual radius value in miles
   const scaleRadius = (radius) => {
     const scaleFactor = 0.1; // Adjust this scale factor to control size
-    return radius * scaleFactor * zoom;
+    return radius * scaleFactor * 2.5;
   };
 
   // Handle coordinate click to zoom and highlight radius
