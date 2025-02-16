@@ -6,20 +6,18 @@ import './Map.css';
 const usGeoUrl = "https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json";
 
 // Sample data for coordinates and radius (10 samples)
-// Sample data for coordinates and radius (spread across the US)
 const coordinatesData = [
-    { name: "Butte County, CA", coordinates: [-121.635, 39.557], radius: 50 },
-    { name: "Lake County, CA", coordinates: [-122.650, 39.000], radius: 30 },
-    { name: "Shasta County, CA", coordinates: [-122.431, 40.589], radius: 40 },
-    { name: "Miami-Dade County, FL", coordinates: [-80.1918, 25.7617], radius: 60 },
-    { name: "Cook County, IL", coordinates: [-87.6298, 41.8781], radius: 45 },
-    { name: "Harris County, TX", coordinates: [-95.3698, 29.7604], radius: 55 },
-    { name: "King County, WA", coordinates: [-122.3321, 47.6062], radius: 35 },
-    { name: "Maricopa County, AZ", coordinates: [-112.074, 33.4484], radius: 50 },
-    { name: "Clark County, NV", coordinates: [-115.1398, 36.1699], radius: 65 },
-    { name: "Allegheny County, PA", coordinates: [-80.032, 40.4406], radius: 40 },
-  ];
-  
+  { name: "Butte County, CA", coordinates: [-121.635, 39.557], radius: 50 },
+  { name: "Lake County, CA", coordinates: [-122.650, 39.000], radius: 30 },
+  { name: "Shasta County, CA", coordinates: [-122.431, 40.589], radius: 40 },
+  { name: "Miami-Dade County, FL", coordinates: [-80.1918, 25.7617], radius: 60 },
+  { name: "Cook County, IL", coordinates: [-87.6298, 41.8781], radius: 45 },
+  { name: "Harris County, TX", coordinates: [-95.3698, 29.7604], radius: 55 },
+  { name: "King County, WA", coordinates: [-122.3321, 47.6062], radius: 35 },
+  { name: "Maricopa County, AZ", coordinates: [-112.074, 33.4484], radius: 50 },
+  { name: "Clark County, NV", coordinates: [-115.1398, 36.1699], radius: 65 },
+  { name: "Allegheny County, PA", coordinates: [-80.032, 40.4406], radius: 40 },
+];
 
 function Map() {
   const [geoData, setGeoData] = useState(null);
@@ -39,14 +37,8 @@ function Map() {
 
   // Adjust radius based on zoom level
   const scaleRadius = (radius) => {
-    const scaleFactor = 0.03; // Adjust this value for desired scale
+    const scaleFactor = 0.028; // Adjust this value for desired scale
     return radius * scaleFactor * zoom;
-  };
-
-  // Handle state click to zoom and focus
-  const handleStateClick = (stateName, geo) => {
-    alert(`You clicked on ${stateName}`);
-    setClickedCoordinate(null); // Reset clicked coordinate
   };
 
   // Handle coordinate click to zoom and highlight radius
@@ -82,16 +74,14 @@ function Map() {
                 <Geographies geography={geoData}>
                   {({ geographies }) =>
                     geographies.map((geo) => {
-                      const stateName = geo.properties?.name || "Unknown State";
                       return (
                         <Geography
                           key={geo.rsmKey}
                           geography={geo}
-                          onClick={() => handleStateClick(stateName, geo)}
                           style={{
-                            default: { fill: "#D6D6DA", outline: "none" },
-                            hover: { fill: "#F53", outline: "none", cursor: "pointer" },
-                            pressed: { fill: "#E42", outline: "none" }
+                            default: { fill: "#D6D6DA", outline: "none" }, // Default color for states
+                            hover: { fill: "#D6D6DA", outline: "none" }, // Remove hover effect
+                            pressed: { fill: "#D6D6DA", outline: "none" } // Remove pressed effect
                           }}
                         />
                       );
@@ -130,7 +120,7 @@ function Map() {
           )}
           <div className="info-text">
             <h2>U.S. Map</h2>
-            <p>Click on a state or a coordinate to view details.</p>
+            <p>Click on a coordinate to zoom in and view the area.</p>
           </div>
         </div>
 
