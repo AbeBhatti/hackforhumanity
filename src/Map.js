@@ -213,7 +213,7 @@ function Map() {
               >
                 <h2>{place.name}</h2>
                 <p>Coordinates: {place.coordinates.join(", ")}</p>
-                <p>Radius: {place.radius} miles</p>
+                <p><strong>Radius:</strong> {place.radius} miles</p>
               </li>
             ))}
           </ul>
