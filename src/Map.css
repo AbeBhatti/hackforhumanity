@@ -1,95 +1,88 @@
 /* src/pages/Map.css */
 .main-title {
     text-align: center;
-    font-size: 40px;
+    font-size: 36px;
     font-weight: bold;
     color: #2c3e50;
-    padding: 14px;
-    background-color: #eef0f5;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     margin-bottom: 20px;
-  }
-  
-  .coordinate-form {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  
-  .coordinate-form input,
-  .coordinate-form button {
     padding: 10px;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    transition: box-shadow 0.3s;
-  }
-  
-  .coordinate-form button {
-    background-color: #4caf50;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .coordinate-form button:hover {
-    background-color: #45a049;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .split-container {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    gap: 24px;
-    padding: 20px;
+    align-items: flex-start;
+    gap: 20px;
     height: 80vh;
+    padding: 20px;
   }
   
   .map-section {
     flex: 2;
-    border-radius: 12px;
-    background-color: #f7faff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 12px;
+    border-radius: 10px;
     overflow: hidden;
+    background-color: #eef7ff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .info-text {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+    margin-top: 8px;
   }
   
   .leaderboard-section {
     flex: 1;
+    padding: 16px;
+    border-radius: 10px;
     background-color: #ffffff;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    height: 100%;
     overflow-y: auto;
     text-align: center;
   }
   
   .place-card {
-    background-color: #fcfcfc;
-    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    padding: 10px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    padding: 12px;
-    margin-bottom: 10px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    background-color: #fafafa;
+    transition: transform 0.3s ease;
   }
   
   .place-card:hover {
     transform: translateY(-5px);
-    background-color: #fff5f5;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    background-color: #ffecec;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
   }
-  
-  circle {
-    transition: fill 0.3s ease;
-  }
-  
-  circle:hover {
-    fill: #e42;
-    cursor: pointer;
-  }
+  /* Map.css */
+.back-button {
+  position: absolute;
+  top: 150px;
+  left: 10px;
+  z-index: 10;
+}
+
+.btn-back {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.btn-back:hover {
+  background-color: #ddd;
+}
